@@ -35,7 +35,38 @@ def run_checks(checker_data: models.CheckerData) -> None:
         )
         return
 
-    # TODO: also skip if schema/data type/parameters/reference checkers fail
+    if checker_data.result.get_checker_issue_count("xoscBundle", "schema_xosc") > 0:
+        logging.error(
+            f"Invalid xosc input file. Checker {minsubset_constants.CHECKER_ID} skipped"
+        )
+        checker_data.result.set_checker_status(
+            checker_bundle_name=constants.BUNDLE_NAME,
+            checker_id=minsubset_constants.CHECKER_ID,
+            status=StatusType.SKIPPED,
+        )
+        return
+
+    if checker_data.result.get_checker_issue_count("xoscBundle", "reference_xosc") > 0:
+        logging.error(
+            f"Invalid reference(s) in input file. Checker {minsubset_constants.CHECKER_ID} skipped"
+        )
+        checker_data.result.set_checker_status(
+            checker_bundle_name=constants.BUNDLE_NAME,
+            checker_id=minsubset_constants.CHECKER_ID,
+            status=StatusType.SKIPPED,
+        )
+        return
+
+    if checker_data.result.get_checker_issue_count("xoscBundle", "data_type_xosc") > 0:
+        logging.error(
+            f"Invalid data_type properties in input file. Checker {minsubset_constants.CHECKER_ID} skipped"
+        )
+        checker_data.result.set_checker_status(
+            checker_bundle_name=constants.BUNDLE_NAME,
+            checker_id=minsubset_constants.CHECKER_ID,
+            status=StatusType.SKIPPED,
+        )
+        return
 
     rule_list = [
         action_constraints.check_rule,
