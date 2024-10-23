@@ -160,13 +160,13 @@ def _check_FollowTrajectoryAction_constraints(
                         }
                     )
         else:
-            logging.error(f"- Catalog reference not in subset {xml_trajectory}")
+            logging.error(f"- Catalog reference not in subset")
             issues.append(
                 {
-                    "description": f"Catalog reference not in subset {xml_trajectory}",
-                    "row": xml_trajectory.sourceline,
+                    "description": f"Catalog reference not in subset",
+                    "row": xml_trajectoryref.sourceline,
                     "column": 0,
-                    "xpath": xml_tree.getpath(xml_trajectory),
+                    "xpath": xml_tree.getpath(xml_trajectoryref),
                 }
             )
         xml_following_mode = xml_follow_trajectory_action.find(
