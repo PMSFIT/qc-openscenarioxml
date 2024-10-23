@@ -12,6 +12,16 @@ from qc_openscenario.checks.minsubset_checker import minsubset_constants
 RULE_SEVERITY = IssueSeverity.INFORMATION
 RULE_NAME = "action_constraints"
 
+ALLOWED_INITACTIONS = ["TeleportAction"]
+ALLOWED_STORYACTIONS = ["RoutingAction", "FollowTrajectoryAction"]
+FOLLOWTRAJECTORYACTION_CONSTRAINTS = {
+    "allowed_shapes": ["Polyline"],
+    "allowed_following_modes": ["position"],
+    "allowed_timing_domains": ["absolute"],
+    "timing_offset_allowed": False,
+    "timing_scale_allowed": False,
+}
+
 
 def _contains_allowed_init_actions_only(
     xml_tree: etree._ElementTree, allowed_actions: list[str]
@@ -252,7 +262,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
     )
 
     issues_allowed_init_actions = _contains_allowed_init_actions_only(
-        xml_tree=checker_data.input_file_xml_root, allowed_actions=["TeleportAction"]
+        xml_tree=checker_data.input_file_xml_root, allowed_actions=ALLOWED_INITACTIONS
     )
 
     for issue in issues_allowed_init_actions:
@@ -281,7 +291,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
 
     issues_allowed_story_actions = _contains_allowed_story_actions_only(
         xml_tree=checker_data.input_file_xml_root,
-        allowed_actions=["RoutingAction", "FollowTrajectoryAction"],
+        allowed_actions=ALLOWED_STORYACTIONS,
     )
 
     for issue in issues_allowed_story_actions:
@@ -311,11 +321,19 @@ def check_rule(checker_data: models.CheckerData) -> None:
     issues_FollowTrajectoryAction_constraints = (
         _check_FollowTrajectoryAction_constraints(
             xml_tree=checker_data.input_file_xml_root,
-            allowed_shapes=["Polyline"],
-            allowed_following_modes=["position"],
-            allowed_timing_domains=["absolute"],
-            timing_offset_allowed=False,
-            timing_scale_allowed=False,
+            allowed_shapes=FOLLOWTRAJECTORYACTION_CONSTRAINTS["allowed_shapes"],
+            allowed_following_modes=FOLLOWTRAJECTORYACTION_CONSTRAINTS[
+                "allowed_following_modes"
+            ],
+            allowed_timing_domains=FOLLOWTRAJECTORYACTION_CONSTRAINTS[
+                "allowed_timing_domains"
+            ],
+            timing_offset_allowed=FOLLOWTRAJECTORYACTION_CONSTRAINTS[
+                "timing_offset_allowed"
+            ],
+            timing_scale_allowed=FOLLOWTRAJECTORYACTION_CONSTRAINTS[
+                "timing_scale_allowed"
+            ],
         )
     )
 

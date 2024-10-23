@@ -12,6 +12,8 @@ from qc_openscenario.checks.minsubset_checker import minsubset_constants
 RULE_SEVERITY = IssueSeverity.INFORMATION
 RULE_NAME = "position_constraints"
 
+ALLOWED_POSITION_TYPES = ["WorldPosition"]
+
 
 def _check_allowed_position_types(
     xml_tree: etree._ElementTree, allowed_position_types: list[str]
@@ -54,7 +56,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
 
     contains_allowed_position_types_only, issues = _check_allowed_position_types(
         xml_tree=checker_data.input_file_xml_root,
-        allowed_position_types=["WorldPosition"],
+        allowed_position_types=ALLOWED_POSITION_TYPES,
     )
 
     if not contains_allowed_position_types_only:

@@ -12,6 +12,12 @@ from qc_openscenario.checks.minsubset_checker import minsubset_constants
 RULE_SEVERITY = IssueSeverity.INFORMATION
 RULE_NAME = "condition_constraints"
 
+ALLOWED_CONDITIONS = [
+    "ByValueCondition",
+    "SimulationTimeCondition",
+    "StoryboardElementStateCondition",
+]
+
 
 def _contains_allowed_conditions_only(
     xml_tree: etree._ElementTree, allowed_conditions: list[str]
@@ -62,11 +68,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
 
     issues_allowed_conditions = _contains_allowed_conditions_only(
         xml_tree=checker_data.input_file_xml_root,
-        allowed_conditions=[
-            "ByValueCondition",
-            "SimulationTimeCondition",
-            "StoryboardElementStateCondition",
-        ],
+        allowed_conditions=ALLOWED_CONDITIONS,
     )
 
     for issue in issues_allowed_conditions:
