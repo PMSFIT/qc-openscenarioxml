@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../qc_openscenario/schema/1.3.0/OpenSCENARIO.xsd">
+  <FileHeader revMajor="1" revMinor="3" date="2021-01-13T10:00:00" description="An example where the ego arrives at a 4 way junction as 2 closely timed non-egos cross." author="ASAM e.V." />
+  <ParameterDeclarations>
+    <ParameterDeclaration name="Road_Logics" parameterType="string" value="Databases/fabriksgatan.xodr" />
+    <ParameterDeclaration name="Road_SceneGraph" parameterType="string" value="Databases/fabriksgatan.osgb" />
+    <ParameterDeclaration name="Ego_Speed" parameterType="double" value="6.4" />
+    <ParameterDeclaration name="A1_InitialTrajectoryDistance" parameterType="double" value="10.0" />
+    <ParameterDeclaration name="A2_InitialTrajectoryDistance" parameterType="double" value="0.0" />
+  </ParameterDeclarations>
+  <VariableDeclarations>
+    <VariableDeclaration name="testvariable" variableType="double" value="0.0" />
+  </VariableDeclarations>
+  <CatalogLocations>
+    <TrajectoryCatalog>
+      <Directory path="Catalogs/Trajectories" />
+    </TrajectoryCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="$Road_Logics" />
+    <SceneGraphFile filepath="$Road_SceneGraph" />
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="pedestrian1">
+      <Pedestrian mass="90.0" name="pedestrian1" pedestrianCategory="pedestrian">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Pedestrian>
+    </ScenarioObject>
+    <ScenarioObject name="osi_moving_object_1">
+        <Vehicle name="osi_moving_object_vehicle_1" mass="1800.0" model3d="test.model" vehicleCategory="car">
+          <BoundingBox>
+            <Center x="1.4859" y="0" z="0.7095"/>
+            <Dimensions height="1.419" length="4.953" width="1.881"/>
+          </BoundingBox>
+          <Performance maxAcceleration="4" maxAccelerationRate="10" maxDeceleration="9" maxSpeed="250"/>
+          <Axles>
+            <RearAxle maxSteering="0.5" positionX="0" positionZ="0.4" trackWidth="1.63" wheelDiameter="0.8"/>
+          </Axles>
+          <Properties>
+            <Property name="type" value="simulation"/>
+          </Properties>
+        </Vehicle>
+      </ScenarioObject>
+      <ScenarioObject name="osi_moving_object_2">
+        <Vehicle name="osi_moving_object_vehicle_2" vehicleCategory="car">
+          <BoundingBox>
+            <Center x="1.4859" y="0" z="0.7095"/>
+            <Dimensions height="1.419" length="4.953" width="1.881"/>
+          </BoundingBox>
+          <Performance maxAcceleration="4" maxDeceleration="9" maxSpeed="250"/>
+          <Axles>
+            <FrontAxle maxSteering="0.5" positionX="2.7" positionZ="0.4" trackWidth="1.63" wheelDiameter="0.8"/>
+            <RearAxle maxSteering="0.5" positionX="0" positionZ="0.4" trackWidth="1.63" wheelDiameter="0.8"/>
+            <AdditionalAxle maxSteering="0.5" positionX="0" positionZ="0.4" trackWidth="1.63" wheelDiameter="0.8"/>
+          </Axles>
+        </Vehicle>
+      </ScenarioObject>
+    <ScenarioObject name="Ego">
+      <Vehicle name="HAF" vehicleCategory="car">
+        <ParameterDeclarations />
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0" />
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9" />
+          <Dimensions width="2.1" length="4.5" height="1.8" />
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3" />
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3" />
+        </Axles>
+      </Vehicle>
+    </ScenarioObject>
+    <ScenarioObject name="A1">
+      <Vehicle name="Default_Car" vehicleCategory="car">
+        <ParameterDeclarations />
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0" />
+        <BoundingBox>
+          <Center x="1.4" y="0.0" z="0.8" />
+          <Dimensions width="2.0" length="4.2" height="1.6" />
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.5" trackWidth="1.75" positionX="2.8" positionZ="0.25" />
+          <RearAxle maxSteering="0.0" wheelDiameter="0.5" trackWidth="1.75" positionX="0.0" positionZ="0.25" />
+        </Axles>
+      </Vehicle>
+    </ScenarioObject>
+    <ScenarioObject name="A2">
+      <Vehicle name="Default_Car" vehicleCategory="car">
+        <ParameterDeclarations />
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0" />
+        <BoundingBox>
+          <Center x="1.4" y="0.0" z="0.8" />
+          <Dimensions width="2.0" length="4.2" height="1.6" />
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.5" trackWidth="1.75" positionX="2.8" positionZ="0.25" />
+          <RearAxle maxSteering="0.0" wheelDiameter="0.5" trackWidth="1.75" positionX="0.0" positionZ="0.25" />
+        </Axles>
+      </Vehicle>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2020-02-21T12:00:00" />
+              <Weather fractionalCloudCover="zeroOktas">
+                <Sun illuminance="100000.0" azimuth="0.0" elevation="1.571" />
+                <Fog visualRange="100000.0" />
+                <Precipitation precipitationType="dry" precipitationIntensity="0.0" />
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0" />
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="time" />
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$Ego_Speed" />
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="3" laneId="-1" s="8.0" />
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="A1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <TrajectoryPosition s="$A1_InitialTrajectoryDistance">
+                  <TrajectoryRef>
+                    <CatalogReference catalogName="TrajectoryCatalog" entryName="FabriksgatanNorthToSouth" />
+                  </TrajectoryRef>
+                </TrajectoryPosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="A2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <TrajectoryPosition s="$A2_InitialTrajectoryDistance">
+                  <TrajectoryRef>
+                    <CatalogReference catalogName="TrajectoryCatalog" entryName="FabriksgatanNorthToSouth" />
+                  </TrajectoryRef>
+                </TrajectoryPosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="Story11">
+        <Act name="osi_moving_object_vehicle_1_act">
+            <ManeuverGroup name="osi_moving_object_vehicle_1_maneuvergroup" maximumExecutionCount="1">
+              <Actors selectTriggeringEntities="false">
+                <EntityRef entityRef="osi_moving_object_1"/>
+              </Actors>
+              <Maneuver name="osi_moving_object_1_maneuver">
+                <Event name="osi_moving_object_1_maneuver_event" priority="override">
+                  <Action name="osi_moving_object_1_maneuver_event_action">
+                    <PrivateAction>
+                      <RoutingAction>
+                        <FollowTrajectoryAction>
+                          <TrajectoryRef>
+                            <Trajectory closed="false" name="osi_moving_object_vehicle_1_trajectory">
+                              <Shape>
+                                <Polyline>
+                                    <Vertex time="0.3">
+                                        <Position>
+                                          <WorldPosition x="-308.36837038224206" y="-62.72132151160449" z="0.0" h="0.29707853723620486" p="0.0" r="0.0"/>
+                                        </Position>
+                                      </Vertex>
+                                      <Vertex time="0.3">
+                                        <Position>
+                                          <WorldPosition x="-308.36837038224206" y="-62.72132151160449" z="0.0" h="0.29707853723620486" p="0.0" r="0.0"/>
+                                        </Position>
+                                      </Vertex>
+                                </Polyline>
+                              </Shape>
+                          </Trajectory>
+                        </TrajectoryRef>
+                        <TimeReference>
+                          <Timing domainAbsoluteRelative="absolute" offset="0.0" scale="1.0"/>
+                        </TimeReference>
+                        <TrajectoryFollowingMode followingMode="position"/>
+                      </FollowTrajectoryAction>
+                    </RoutingAction>
+                  </PrivateAction>
+                </Action>
+              </Event>
+            </Maneuver>
+          </ManeuverGroup>
+        </Act>
+    </Story>
+    <Story name="Story0">
+        <Act name="osi_moving_object_vehicle_1_act">
+            <ManeuverGroup name="osi_moving_object_vehicle_1_maneuvergroup" maximumExecutionCount="1">
+              <Actors selectTriggeringEntities="false">
+                <EntityRef entityRef="osi_moving_object_1"/>
+              </Actors>
+              <Maneuver name="osi_moving_object_1_maneuver">
+                <Event name="osi_moving_object_1_maneuver_event" priority="override">
+                  <Action name="osi_moving_object_1_maneuver_event_action">
+                    <PrivateAction>
+                      <RoutingAction>
+                        <FollowTrajectoryAction>
+                          <TrajectoryRef>
+                            <Trajectory closed="false" name="osi_moving_object_vehicle_1_trajectory">
+                              <Shape>
+                                <Polyline>
+                                    <Vertex time="0.3">
+                                        <Position>
+                                          <WorldPosition x="-308.36837038224206" y="-62.72132151160449" z="0.0" h="0.29707853723620486" p="0.0" r="0.0"/>
+                                        </Position>
+                                      </Vertex>
+                                      <Vertex time="0.3">
+                                        <Position>
+                                          <WorldPosition x="-308.36837038224206" y="-62.72132151160449" z="0.0" h="0.29707853723620486" p="0.0" r="0.0"/>
+                                        </Position>
+                                      </Vertex>
+                                </Polyline>
+                              </Shape>
+                          </Trajectory>
+                        </TrajectoryRef>
+                        <TimeReference>
+                          <Timing domainAbsoluteRelative="absolute" offset="0.0" scale="1.0"/>
+                        </TimeReference>
+                        <TrajectoryFollowingMode followingMode="position"/>
+                      </FollowTrajectoryAction>
+                    </RoutingAction>
+                  </PrivateAction>
+                </Action>
+              </Event>
+            </Maneuver>
+          </ManeuverGroup>
+        </Act>
+    </Story>
+    <Story name="A1_Story">
+      <Act name="A1_Act1">
+        <ManeuverGroup maximumExecutionCount="1" name="A1_Sequence1">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="A1" />
+          </Actors>
+          <Maneuver name="A1_CrossingManeuver">
+            <Event name="A1_CrossingEvent" priority="override">
+              <Action name="A1_CrossingAction">
+                <PrivateAction>
+                  <RoutingAction>
+                    <FollowTrajectoryAction initialDistanceOffset="$A1_InitialTrajectoryDistance">
+                      <TrajectoryRef>
+                        <CatalogReference catalogName="TrajectoryCatalog" entryName="FabriksgatanNorthToSouth" />
+                      </TrajectoryRef>
+                      <TimeReference>
+                        <Timing domainAbsoluteRelative="absolute" scale="1" offset="0" />
+                      </TimeReference>
+                      <TrajectoryFollowingMode followingMode="position" />
+                    </FollowTrajectoryAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+      </Act>
+    </Story>
+    <Story name="A2_Story">
+      <Act name="A2_Act1">
+        <ManeuverGroup maximumExecutionCount="1" name="A2_Sequence1">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="A2" />
+          </Actors>
+          <Maneuver name="A2_CrossingManeuver">
+            <Event name="A2_CrossingEvent" priority="override">
+              <Action name="A2_CrossingAction">
+                <PrivateAction>
+                  <RoutingAction>
+                    <FollowTrajectoryAction initialDistanceOffset="$A2_InitialTrajectoryDistance">
+                      <TrajectoryRef>
+                        <CatalogReference catalogName="TrajectoryCatalog" entryName="FabriksgatanNorthToSouth" />
+                      </TrajectoryRef>
+                      <TimeReference>
+                        <Timing domainAbsoluteRelative="relative" scale="1" offset="0" />
+                      </TimeReference>
+                      <TrajectoryFollowingMode followingMode="position" />
+                    </FollowTrajectoryAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start_of_A2" delay="0" conditionEdge="rising">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0.3" rule="greaterThan" />
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="End_of_simulation" delay="0" conditionEdge="none">
+          <ByEntityCondition>
+            <TriggeringEntities triggeringEntitiesRule="all">
+              <EntityRef entityRef="A2" />
+            </TriggeringEntities>
+            <EntityCondition>
+              <TraveledDistanceCondition value="320"></TraveledDistanceCondition>
+            </EntityCondition>
+          </ByEntityCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>

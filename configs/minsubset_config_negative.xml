@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Config>
+
+    <Param name="XoscFile" value=".\tests\data\minsubset\minsubset_negative.xosc" />
+
+    <CheckerBundle application="xoscBundle">
+        <Param name="resultFile" value="xosc_bundle_report_negative.xqar" />
+        <Checker checkerId="basic_xosc" maxLevel="1" minLevel="3" />
+        <Checker checkerId="schema_xosc" maxLevel="1" minLevel="3" />
+        <Checker checkerId="parameters_xosc" maxLevel="1" minLevel="3" />
+        <Checker checkerId="reference_xosc" maxLevel="1" minLevel="3" />
+        <Checker checkerId="minsubset_xosc" maxLevel="1" minLevel="3" />
+    </CheckerBundle>
+
+    <ReportModule application="TextReport">
+        <Param name="strInputFile" value="Result_negative.xqar" />
+        <Param name="strReportFile" value="Report_negative.txt" />
+    </ReportModule>
+
+</Config>
