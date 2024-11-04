@@ -8,9 +8,14 @@ from qc_openscenario.schema import schema_files
 
 from qc_openscenario.checks.minsubset_checker import (
     action_constraints,
+    catalog_constraints,
     condition_constraints,
+    declaration_constraints,
+    enitities_constraints,
     minsubset_constants,
     position_constraints,
+    story_constraints,
+    vehicle_constraints,
 )
 
 
@@ -70,8 +75,13 @@ def run_checks(checker_data: models.CheckerData) -> None:
 
     rule_list = [
         action_constraints.check_rule,
+        catalog_constraints.check_rule,
+        declaration_constraints.check_rule,
+        enitities_constraints.check_rule,
         position_constraints.check_rule,
         condition_constraints.check_rule,
+        story_constraints.check_rule,
+        vehicle_constraints.check_rule,
     ]
 
     for rule in rule_list:

@@ -10,38 +10,38 @@ from qc_openscenario.checks import utils, models
 from qc_openscenario.checks.minsubset_checker import minsubset_constants
 
 RULE_SEVERITY = IssueSeverity.INFORMATION
-RULE_NAME = "position_constraints"
-
-ALLOWED_POSITION_TYPES = ["WorldPosition"]
+RULE_NAME = "story_constraints"
 
 
-def _check_allowed_position_types(
-    xml_tree: etree._ElementTree, allowed_position_types: list[str]
+def _check_if_only_one_story_in_storyboard(
+    xml_tree: etree._ElementTree,
 ) -> tuple[bool, list[dict]]:
     status = True
     issues = []
-    for xml_position in xml_tree.iterfind(".//Position"):
-        for xml_position_child in xml_position:
-            if not xml_position_child.tag in allowed_position_types:
-                logging.error(
-                    f"- Position not in subset {allowed_position_types}: {xml_position_child.tag}"
-                )
-                issue = {
-                    "description": f"Position not in subset {allowed_position_types}: {xml_position_child.tag}",
-                    "row": xml_position_child.sourceline,
-                    "column": 0,
-                    "xpath": xml_tree.getpath(xml_position_child),
-                }
-                status = False
-                issues.append(issue)
+    allowed_number_of_stories = 1
+    current_number_of_stories = 0
+    xml_storyboards = xml_tree.xpath(".//Storyboard")
+    for xml_story in xml_storyboards[0].xpath(".//Story"):
+        current_number_of_stories = current_number_of_stories + 1
+        if current_number_of_stories > allowed_number_of_stories:
+            logging.error(
+                f"- More than one story in storyboard ({current_number_of_stories})"
+            )
+            issue = {
+                "description": f"More than one story in storyboard ({current_number_of_stories})",
+                "row": xml_story.sourceline,
+                "column": 0,
+                "xpath": xml_tree.getpath(xml_story),
+            }
+            status = False
+            issues.append(issue)
     return status, issues
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
     """
-    Implements a rule to check if input file only contains the following allowed
-    position types only:
-    * WorldPosition
+    Implements a rule to check if input file complies with the following story constraints:
+    * Only allowed to contain one story element
     """
     logging.info(f"Executing {RULE_NAME} check")
 
@@ -54,17 +54,16 @@ def check_rule(checker_data: models.CheckerData) -> None:
         rule_full_name=f"xml.{RULE_NAME}",
     )
 
-    contains_allowed_position_types_only, issues = _check_allowed_position_types(
-        xml_tree=checker_data.input_file_xml_root,
-        allowed_position_types=ALLOWED_POSITION_TYPES,
+    contains_only_one_story, issues = _check_if_only_one_story_in_storyboard(
+        xml_tree=checker_data.input_file_xml_root
     )
 
-    if not contains_allowed_position_types_only:
+    if not contains_only_one_story:
         for issue in issues:
             issue_id = checker_data.result.register_issue(
                 checker_bundle_name=constants.BUNDLE_NAME,
                 checker_id=minsubset_constants.CHECKER_ID,
-                description=f"Issue flagging when input file contains position types other than {ALLOWED_POSITION_TYPES}",
+                description="Issue flagging when input file contains more than one story element",
                 level=RULE_SEVERITY,
                 rule_uid=rule_uid,
             )
