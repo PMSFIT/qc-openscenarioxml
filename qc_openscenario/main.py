@@ -18,6 +18,7 @@ from qc_openscenario.checks import basic_checker
 from qc_openscenario.checks import reference_checker
 from qc_openscenario.checks import parameters_checker
 from qc_openscenario.checks import data_type_checker
+from qc_openscenario.checks import minsubset_checker
 from qc_openscenario.checks import utils, models
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
@@ -224,6 +225,9 @@ def run_checks(config: Configuration, result: Result) -> None:
         checker_data,
     )
     execute_checker(data_type_checker.positive_duration_in_phase, checker_data)
+
+    # 6. Run minsubset checks
+    execute_checker(minsubset_checker.minsubset_checker, checker_data)
 
 
 def main():
