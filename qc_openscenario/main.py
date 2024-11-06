@@ -227,7 +227,28 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(data_type_checker.positive_duration_in_phase, checker_data)
 
     # 6. Run minsubset checks
-    execute_checker(minsubset_checker.minsubset_checker, checker_data)
+    execute_checker(minsubset_checker.additional_axles_not_allowed, checker_data)
+    execute_checker(minsubset_checker.allowed_conditions, checker_data)
+    execute_checker(minsubset_checker.allowed_init_actions, checker_data)
+    execute_checker(minsubset_checker.allowed_position_types, checker_data)
+    execute_checker(minsubset_checker.allowed_scenario_objects, checker_data)
+    execute_checker(minsubset_checker.allowed_story_actions, checker_data)
+    execute_checker(minsubset_checker.allowed_vehicle_attributes, checker_data)
+    execute_checker(minsubset_checker.allowed_vehicle_elements, checker_data)
+    execute_checker(
+        minsubset_checker.allowed_vehicle_performance_attributes, checker_data
+    )
+    execute_checker(minsubset_checker.catalog_references_not_allowed, checker_data)
+    execute_checker(minsubset_checker.entity_selections_not_allowed, checker_data)
+    execute_checker(
+        minsubset_checker.follow_trajectory_action_constraints, checker_data
+    )
+    execute_checker(minsubset_checker.monitors_not_allowed, checker_data)
+    execute_checker(minsubset_checker.object_controllers_not_allowed, checker_data)
+    execute_checker(minsubset_checker.not_more_than_one_story_allowed, checker_data)
+    execute_checker(minsubset_checker.parameters_not_allowed, checker_data)
+    execute_checker(minsubset_checker.variables_not_allowed, checker_data)
+    execute_checker(minsubset_checker.vehicle_must_contain_front_axle, checker_data)
 
 
 def main():

@@ -7,10 +7,15 @@ from qc_baselib import Configuration, Result, IssueSeverity
 from qc_openscenario import constants
 from qc_openscenario.checks import utils, models
 
-from qc_openscenario.checks.minsubset_checker import minsubset_constants
+from qc_openscenario import basic_preconditions
+
+CHECKER_ID = "check_asam_xosc_minsubset_allowed_position_types"
+CHECKER_DESCRIPTION = "Input file must only contain allowed position types."
+CHECKER_PRECONDITIONS = basic_preconditions.CHECKER_PRECONDITIONS
+RULE_UID = "asam.net:xosc:1.3.0:minsubset.allowed_position_types"
 
 RULE_SEVERITY = IssueSeverity.INFORMATION
-RULE_NAME = "position_constraints"
+RULE_NAME = RULE_UID.split(".")[-1]
 
 ALLOWED_POSITION_TYPES = ["WorldPosition"]
 
@@ -45,15 +50,6 @@ def check_rule(checker_data: models.CheckerData) -> None:
     """
     logging.info(f"Executing {RULE_NAME} check")
 
-    rule_uid = checker_data.result.register_rule(
-        checker_bundle_name=constants.BUNDLE_NAME,
-        checker_id=minsubset_constants.CHECKER_ID,
-        emanating_entity="asam.net",
-        standard="xosc",
-        definition_setting="1.0.0",
-        rule_full_name=f"xml.{RULE_NAME}",
-    )
-
     contains_allowed_position_types_only, issues = _check_allowed_position_types(
         xml_tree=checker_data.input_file_xml_root,
         allowed_position_types=ALLOWED_POSITION_TYPES,
@@ -63,14 +59,14 @@ def check_rule(checker_data: models.CheckerData) -> None:
         for issue in issues:
             issue_id = checker_data.result.register_issue(
                 checker_bundle_name=constants.BUNDLE_NAME,
-                checker_id=minsubset_constants.CHECKER_ID,
+                checker_id=CHECKER_ID,
                 description=f"Issue flagging when input file contains position types other than {ALLOWED_POSITION_TYPES}",
                 level=RULE_SEVERITY,
-                rule_uid=rule_uid,
+                rule_uid=RULE_UID,
             )
             checker_data.result.add_file_location(
                 checker_bundle_name=constants.BUNDLE_NAME,
-                checker_id=minsubset_constants.CHECKER_ID,
+                checker_id=CHECKER_ID,
                 issue_id=issue_id,
                 row=issue["row"],
                 column=issue["column"],
@@ -78,7 +74,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
             )
             checker_data.result.add_xml_location(
                 checker_bundle_name=constants.BUNDLE_NAME,
-                checker_id=minsubset_constants.CHECKER_ID,
+                checker_id=CHECKER_ID,
                 issue_id=issue_id,
                 xpath=str(issue["xpath"]),
                 description=issue["description"],

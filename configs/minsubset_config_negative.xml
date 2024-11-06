@@ -23,7 +23,24 @@
         <Checker checkerId="check_asam_xosc_data_type_non_negative_transition_time_in_light_state_action" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_positive_duration_in_phase" maxLevel="1" minLevel="3" />
 
-        <Checker checkerId="minsubset_xosc" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_additional_axles_not_allowed" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_conditions" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_init_actions" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_position_types" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_scenario_objects" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_story_actions" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_vehicle_attributes" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_vehicle_elements" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_allowed_vehicle_performance_attributes" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_catalog_references_not_allowed" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_entity_selections_not_allowed" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_follow_trajectory_action_constraints" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_monitors_not_allowed" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_not_more_than_one_story" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_object_controllers_not_allowed" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_parameters_not_allowed" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_variables_not_allowed" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_vehicle_lacks_front_axle" maxLevel="1" minLevel="3" />
     </CheckerBundle>
 
     <ReportModule application="TextReport">

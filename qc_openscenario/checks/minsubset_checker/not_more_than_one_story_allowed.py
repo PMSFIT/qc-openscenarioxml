@@ -7,13 +7,18 @@ from qc_baselib import Configuration, Result, IssueSeverity
 from qc_openscenario import constants
 from qc_openscenario.checks import utils, models
 
-from qc_openscenario.checks.minsubset_checker import minsubset_constants
+from qc_openscenario import basic_preconditions
+
+CHECKER_ID = "check_asam_xosc_minsubset_not_more_than_one_story_allowed"
+CHECKER_DESCRIPTION = "Input file must not contain more than one story."
+CHECKER_PRECONDITIONS = basic_preconditions.CHECKER_PRECONDITIONS
+RULE_UID = "asam.net:xosc:1.3.0:minsubset.not_more_than_one_story_allowed"
 
 RULE_SEVERITY = IssueSeverity.INFORMATION
-RULE_NAME = "story_constraints"
+RULE_NAME = RULE_UID.split(".")[-1]
 
 
-def _check_if_only_one_story_in_storyboard(
+def _not_more_than_one_story_in_storyboard_allowed(
     xml_tree: etree._ElementTree,
 ) -> tuple[bool, list[dict]]:
     status = True
@@ -45,31 +50,22 @@ def check_rule(checker_data: models.CheckerData) -> None:
     """
     logging.info(f"Executing {RULE_NAME} check")
 
-    rule_uid = checker_data.result.register_rule(
-        checker_bundle_name=constants.BUNDLE_NAME,
-        checker_id=minsubset_constants.CHECKER_ID,
-        emanating_entity="asam.net",
-        standard="xosc",
-        definition_setting="1.0.0",
-        rule_full_name=f"xml.{RULE_NAME}",
-    )
-
-    contains_only_one_story, issues = _check_if_only_one_story_in_storyboard(
+    not_more_than_one_story, issues = _not_more_than_one_story_in_storyboard_allowed(
         xml_tree=checker_data.input_file_xml_root
     )
 
-    if not contains_only_one_story:
+    if not not_more_than_one_story:
         for issue in issues:
             issue_id = checker_data.result.register_issue(
                 checker_bundle_name=constants.BUNDLE_NAME,
-                checker_id=minsubset_constants.CHECKER_ID,
+                checker_id=CHECKER_ID,
                 description="Issue flagging when input file contains more than one story element",
                 level=RULE_SEVERITY,
-                rule_uid=rule_uid,
+                rule_uid=RULE_UID,
             )
             checker_data.result.add_file_location(
                 checker_bundle_name=constants.BUNDLE_NAME,
-                checker_id=minsubset_constants.CHECKER_ID,
+                checker_id=CHECKER_ID,
                 issue_id=issue_id,
                 row=issue["row"],
                 column=issue["column"],
@@ -77,7 +73,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
             )
             checker_data.result.add_xml_location(
                 checker_bundle_name=constants.BUNDLE_NAME,
-                checker_id=minsubset_constants.CHECKER_ID,
+                checker_id=CHECKER_ID,
                 issue_id=issue_id,
                 xpath=str(issue["xpath"]),
                 description=issue["description"],
