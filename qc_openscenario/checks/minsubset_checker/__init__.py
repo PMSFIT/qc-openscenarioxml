@@ -19,4 +19,4 @@ from . import object_controllers_not_allowed as object_controllers_not_allowed
 from . import not_more_than_one_story_allowed as not_more_than_one_story_allowed
 from . import parameters_not_allowed as parameters_not_allowed
 from . import variables_not_allowed as variables_not_allowed
-from . import vehicle_lacks_front_axle as vehicle_lacks_front_axle
+from . import vehicle_must_contain_front_axle as vehicle_must_contain_front_axle

@@ -4,7 +4,7 @@
     <Param name="InputFile" value=".\tests\data\minsubset\minsubset_negative.xosc" />
 
     <CheckerBundle application="xoscBundle">
-        <Param name="resultFile" value="xosc_bundle_report.xqar" />
+        <Param name="resultFile" value="xosc_bundle_report_negative.xqar" />
         <Checker checkerId="check_asam_xosc_xml_valid_xml_document" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_xml_root_tag_is_openscenario" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_xml_fileheader_is_present" maxLevel="1" minLevel="3" />
@@ -36,16 +36,16 @@
         <Checker checkerId="check_asam_xosc_minsubset_entity_selections_not_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_follow_trajectory_action_constraints" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_monitors_not_allowed" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_xosc_minsubset_not_more_than_one_story" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_not_more_than_one_story_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_object_controllers_not_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_parameters_not_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_variables_not_allowed" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_xosc_minsubset_vehicle_lacks_front_axle" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_vehicle_must_contain_front_axle" maxLevel="1" minLevel="3" />
     </CheckerBundle>
 
     <ReportModule application="TextReport">
-        <Param name="strInputFile" value="Result_negative.xqar" />
-        <Param name="strReportFile" value="Report_negative.txt" />
+        <Param name="strInputFile" value="Result.xqar" />
+        <Param name="strReportFile" value="Report.txt" />
     </ReportModule>
 
 </Config>
