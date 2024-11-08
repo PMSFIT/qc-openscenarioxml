@@ -111,3 +111,111 @@
 * Description: Expressions in OpenSCENARIO must only use the allowed operands.
 * Addressed rules:
   * asam.net:xosc:1.2.0:data_type.positive_duration_in_phase
+
+### check_asam_xosc_minsubset_additional_axles_not_allowed
+
+* Description: Vehicles are not allowed to contain AdditionalAxle elements.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.additional_axles_not_allowed
+
+### check_asam_xosc_minsubset_allowed_conditions
+
+* Description: Input file must only contain allowed condition types.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_conditions
+
+### check_asam_xosc_minsubset_allowed_init_actions
+
+* Description: Input file must only contain allowed init action types.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_init_actions
+
+### check_asam_xosc_minsubset_allowed_position_types
+
+* Description: Input file must only contain allowed position types.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_position_types
+
+### check_asam_xosc_minsubset_allowed_scenario_objects
+
+* Description: Input file must only contain allowed scenario object types.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_scenario_objects
+
+### check_asam_xosc_minsubset_allowed_story_actions
+
+* Description: Input file must only contain allowed story action types.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_story_actions
+
+### check_asam_xosc_minsubset_allowed_vehicle_attributes
+
+* Description: Input file must only contain allowed vehicle attributes.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_vehicle_attributes
+
+### check_asam_xosc_minsubset_allowed_vehicle_elements
+
+* Description: Input file must only contain allowed vehicle elements.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_vehicle_elements
+
+### check_asam_xosc_minsubset_allowed_vehicle_performance_attributes
+
+* Description: Input file must only contain allowed vehicle performance attributes.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.allowed_vehicle_performance_attributes
+
+### check_asam_xosc_minsubset_catalog_references_not_allowed
+
+* Description: Input file must not contain catalog references.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.catalog_references_not_allowed
+
+### check_asam_xosc_minsubset_entity_selection_not_allowed
+
+* Description: Entity selections are not allowed.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.entity_selection_not_allowed
+
+### check_asam_xosc_minsubset_follow_trajectory_action_constraints
+
+* Description: Input file must comply with the specified FollowTrajectoryAction constraints.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.follow_trajectory_action_constraints
+
+### check_asam_xosc_minsubset_monitors_not_allowed
+
+* Description: Input file must not contain monitor declarations.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.monitors_not_allowed
+
+### check_asam_xosc_minsubset_object_controller_not_allowed
+
+* Description: Object controllers are not allowed.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.object_controller_not_allowed
+
+### check_asam_xosc_minsubset_not_more_than_one_story_allowed
+
+* Description: Input file must not contain more than one story.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.not_more_than_one_story_allowed
+
+### check_asam_xosc_minsubset_parameters_not_allowed
+
+* Description: Input file must not contain parameter declarations.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.parameters_not_allowed
+
+### check_asam_xosc_minsubset_variables_not_allowed
+
+* Description: Input file must not contain variable declarations.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.variables_not_allowed
+
+### check_asam_xosc_minsubset_vehicle_lacks_front_axle
+
+* Description: Input file must only contain vehicles with front axle.
+* Addressed rules:
+  * asam.net:xosc:1.3.0:minsubset.vehicle_lacks_front_axle
