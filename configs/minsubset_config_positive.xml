@@ -36,7 +36,7 @@
         <Checker checkerId="check_asam_xosc_minsubset_entity_selections_not_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_follow_trajectory_action_constraints" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_monitors_not_allowed" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_xosc_minsubset_not_more_than_one_story" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_xosc_minsubset_not_more_than_one_story_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_object_controllers_not_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_parameters_not_allowed" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_xosc_minsubset_variables_not_allowed" maxLevel="1" minLevel="3" />
