@@ -18,5 +18,9 @@ from . import monitors_not_allowed as monitors_not_allowed
 from . import object_controllers_not_allowed as object_controllers_not_allowed
 from . import not_more_than_one_story_allowed as not_more_than_one_story_allowed
 from . import parameters_not_allowed as parameters_not_allowed
+from . import start_triggers_not_allowed as start_triggers_not_allowed
+from . import (
+    stop_triggers_not_allowed_except_in_storyboard as stop_triggers_not_allowed_except_in_storyboard,
+)
 from . import variables_not_allowed as variables_not_allowed
 from . import vehicle_must_contain_front_axle as vehicle_must_contain_front_axle

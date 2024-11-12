@@ -212,9 +212,9 @@
                           </Trajectory>
                         </TrajectoryRef>
                         <TimeReference>
-                          <Timing domainAbsoluteRelative="absolute" offset="0.0" scale="1.0"/>
+                          <Timing domainAbsoluteRelative="relative" offset="0.1" scale="1.1"/>
                         </TimeReference>
-                        <TrajectoryFollowingMode followingMode="position"/>
+                        <TrajectoryFollowingMode followingMode="follow"/>
                       </FollowTrajectoryAction>
                     </RoutingAction>
                   </PrivateAction>
@@ -330,6 +330,20 @@
             </Condition>
           </ConditionGroup>
         </StartTrigger>
+        <StopTrigger>
+          <ConditionGroup>
+            <Condition name="end_of_A2" delay="0" conditionEdge="none">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="all">
+                  <EntityRef entityRef="A2" />
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="320"></TraveledDistanceCondition>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StopTrigger>
       </Act>
     </Story>
     <StopTrigger>

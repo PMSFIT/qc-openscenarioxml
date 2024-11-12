@@ -247,6 +247,10 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(minsubset_checker.object_controllers_not_allowed, checker_data)
     execute_checker(minsubset_checker.not_more_than_one_story_allowed, checker_data)
     execute_checker(minsubset_checker.parameters_not_allowed, checker_data)
+    execute_checker(minsubset_checker.start_triggers_not_allowed, checker_data)
+    execute_checker(
+        minsubset_checker.stop_triggers_not_allowed_except_in_storyboard, checker_data
+    )
     execute_checker(minsubset_checker.variables_not_allowed, checker_data)
     execute_checker(minsubset_checker.vehicle_must_contain_front_axle, checker_data)
 
