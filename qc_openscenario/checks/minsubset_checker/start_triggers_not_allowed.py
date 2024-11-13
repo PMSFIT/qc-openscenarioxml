@@ -37,11 +37,11 @@ def _no_triggers_except_storyboard_stop_trigger(
 def check_rule(checker_data: models.CheckerData) -> None:
     logging.info(f"Executing {RULE_NAME} check")
 
-    issues_vehicle_lacks_front_axle = _no_triggers_except_storyboard_stop_trigger(
+    issues = _no_triggers_except_storyboard_stop_trigger(
         xml_tree=checker_data.input_file_xml_root
     )
 
-    for issue in issues_vehicle_lacks_front_axle:
+    for issue in issues:
         issue_id = checker_data.result.register_issue(
             checker_bundle_name=constants.BUNDLE_NAME,
             checker_id=CHECKER_ID,

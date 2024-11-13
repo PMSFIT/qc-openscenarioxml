@@ -243,6 +243,8 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(
         minsubset_checker.follow_trajectory_action_constraints, checker_data
     )
+    execute_checker(minsubset_checker.maximum_execution_count_is_one, checker_data)
+    execute_checker(minsubset_checker.max_one_action_per_act, checker_data)
     execute_checker(minsubset_checker.monitors_not_allowed, checker_data)
     execute_checker(minsubset_checker.object_controllers_not_allowed, checker_data)
     execute_checker(minsubset_checker.not_more_than_one_story_allowed, checker_data)

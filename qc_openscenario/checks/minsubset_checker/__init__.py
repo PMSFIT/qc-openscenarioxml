@@ -14,6 +14,8 @@ from . import entity_selections_not_allowed as entity_selections_not_allowed
 from . import (
     follow_trajectory_action_constraints as follow_trajectory_action_constraints,
 )
+from . import maximum_execution_count_is_one as maximum_execution_count_is_one
+from . import max_one_action_per_act as max_one_action_per_act
 from . import monitors_not_allowed as monitors_not_allowed
 from . import object_controllers_not_allowed as object_controllers_not_allowed
 from . import not_more_than_one_story_allowed as not_more_than_one_story_allowed

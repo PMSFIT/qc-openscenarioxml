@@ -226,7 +226,7 @@
     </Story>
     <Story name="Story0">
         <Act name="osi_moving_object_vehicle_1_act">
-            <ManeuverGroup name="osi_moving_object_vehicle_1_maneuvergroup" maximumExecutionCount="1">
+            <ManeuverGroup name="osi_moving_object_vehicle_1_maneuvergroup" maximumExecutionCount="2">
               <Actors selectTriggeringEntities="false">
                 <EntityRef entityRef="osi_moving_object_1"/>
               </Actors>
@@ -262,6 +262,36 @@
                     </RoutingAction>
                   </PrivateAction>
                 </Action>
+                <Action name="osi_moving_object_1_maneuver_event_action">
+                  <PrivateAction>
+                    <RoutingAction>
+                      <FollowTrajectoryAction>
+                        <TrajectoryRef>
+                          <Trajectory closed="false" name="osi_moving_object_vehicle_1_trajectory">
+                            <Shape>
+                              <Polyline>
+                                  <Vertex time="0.3">
+                                      <Position>
+                                        <WorldPosition x="-308.36837038224206" y="-62.72132151160449" z="0.0" h="0.29707853723620486" p="0.0" r="0.0"/>
+                                      </Position>
+                                    </Vertex>
+                                    <Vertex time="0.3">
+                                      <Position>
+                                        <WorldPosition x="-308.36837038224206" y="-62.72132151160449" z="0.0" h="0.29707853723620486" p="0.0" r="0.0"/>
+                                      </Position>
+                                    </Vertex>
+                              </Polyline>
+                            </Shape>
+                        </Trajectory>
+                      </TrajectoryRef>
+                      <TimeReference>
+                        <Timing domainAbsoluteRelative="absolute" offset="0.0" scale="1.0"/>
+                      </TimeReference>
+                      <TrajectoryFollowingMode followingMode="position"/>
+                    </FollowTrajectoryAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
               </Event>
             </Maneuver>
           </ManeuverGroup>
