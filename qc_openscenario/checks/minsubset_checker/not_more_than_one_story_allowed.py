@@ -25,21 +25,22 @@ def _not_more_than_one_story_in_storyboard_allowed(
     issues = []
     allowed_number_of_stories = 1
     current_number_of_stories = 0
-    xml_storyboards = xml_tree.xpath(".//Storyboard")
-    for xml_story in xml_storyboards[0].xpath(".//Story"):
-        current_number_of_stories = current_number_of_stories + 1
-        if current_number_of_stories > allowed_number_of_stories:
-            logging.error(
-                f"- More than one story in storyboard ({current_number_of_stories})"
-            )
-            issue = {
-                "description": f"More than one story in storyboard ({current_number_of_stories})",
-                "row": xml_story.sourceline,
-                "column": 0,
-                "xpath": xml_tree.getpath(xml_story),
-            }
-            status = False
-            issues.append(issue)
+    xml_storyboards = xml_tree.find(".//Storyboard")
+    if xml_storyboards is not None:
+        for xml_story in xml_storyboards.find(".//Story"):
+            current_number_of_stories = current_number_of_stories + 1
+            if current_number_of_stories > allowed_number_of_stories:
+                logging.error(
+                    f"- More than one story in storyboard ({current_number_of_stories})"
+                )
+                issue = {
+                    "description": f"More than one story in storyboard ({current_number_of_stories})",
+                    "row": xml_story.sourceline,
+                    "column": 0,
+                    "xpath": xml_tree.getpath(xml_story),
+                }
+                status = False
+                issues.append(issue)
     return status, issues
 
 

@@ -20,20 +20,22 @@ RULE_NAME = RULE_UID.split(".")[-1]
 
 def _contains_entity_selections(xml_tree: etree._ElementTree) -> list[dict]:
     issues = []
-    for xml_entity in xml_tree.find(".//Entities"):
-        if xml_entity.tag == "EntitySelection":
-            entity_selection_name = xml_entity.attrib["name"]
-            logging.error(
-                f"- Input file contains EntitySelection ({entity_selection_name}) that is not allowed in the subset"
-            )
-            issues.append(
-                {
-                    "description": f"Input file contains EntitySelection ({entity_selection_name}) that is not allowed in the subset",
-                    "row": xml_entity.sourceline,
-                    "column": 0,
-                    "xpath": xml_tree.getpath(xml_entity),
-                }
-            )
+    xml_entities = xml_tree.find(".//Entities")
+    if xml_entities != None:
+        for xml_entity in xml_entities:
+            if xml_entity.tag == "EntitySelection":
+                entity_selection_name = xml_entity.attrib["name"]
+                logging.error(
+                    f"- Input file contains EntitySelection ({entity_selection_name}) that is not allowed in the subset"
+                )
+                issues.append(
+                    {
+                        "description": f"Input file contains EntitySelection ({entity_selection_name}) that is not allowed in the subset",
+                        "row": xml_entity.sourceline,
+                        "column": 0,
+                        "xpath": xml_tree.getpath(xml_entity),
+                    }
+                )
     return issues
 
 
